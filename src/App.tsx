@@ -1,45 +1,18 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import "./App.css";
+import React, {useState} from 'react'
+import Field from './components/field'
+import Languages from './components/languages'
+import Translate from './components/translate'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  const [language, setLanguage] = useState('ru')
+  const [text, setText] = useState('')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className='container'>
+      <Field label='Enter English' onChange={setText} value={text} />
+      <Languages language={language} onLanguageChange={setLanguage} />
+      <hr/>
+      <Translate text={text} language={language} />
     </div>
-  )
+  );
 }
-
-export default App
